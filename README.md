@@ -1,2 +1,2 @@
 # python
-learning python through pluralsight
+learning python through pluralsight, adding personal projects later on
