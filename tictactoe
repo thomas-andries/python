@@ -1,0 +1,98 @@
+X = "X"
+O = "O"
+empty = "_"
+
+# start by getting the playing field
+cells = input("Enter cells:")
+
+result = "---------\n"
+result += "| " + cells[0] + " " + cells[1] + " " + cells[2] + " |\n"
+result += "| " + cells[3] + " " + cells[4] + " " + cells[5] + " |\n"
+result += "| " + cells[6] + " " + cells[7] + " " + cells[8] + " |\n"
+result += "---------"
+print(result)
+# First checking if the result is possible
+amount_x = 0
+amount_o = 0
+amount_empty = 0
+char_counter = 0
+CHAR_AMOUNT = len(cells) - 1  # setting the len of the string to iterate over
+
+while char_counter <= CHAR_AMOUNT:
+    if cells[char_counter] == X:
+        amount_x += 1
+    elif cells[char_counter] == O:
+        amount_o += 1
+    else:
+        amount_empty += 1
+    char_counter += 1
+
+difference_x_o = amount_x - amount_o
+char_counter = 0  # resetting the counter
+winner = ""
+amount_empty = 0  # resetting the counter
+# now let's check the game state
+if -2 < difference_x_o < 2:
+    while char_counter <= CHAR_AMOUNT:
+        if char_counter == 0:
+            if cells[char_counter] == cells[char_counter + 1] == cells[char_counter + 2]:
+                if cells[char_counter] == X:
+                    winner = X
+                    print(winner + " wins the game")
+                elif cells[char_counter] == O:
+                    winner = O
+            elif cells[char_counter] == cells[char_counter + 3] == cells[char_counter + 6]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+            elif cells[char_counter] == cells[char_counter + 4] == cells[char_counter + 8]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+        elif char_counter == 1:
+            if cells[char_counter] == cells[char_counter + 3] == cells[char_counter + 6]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+        elif char_counter == 2:
+            if cells[char_counter] == cells[char_counter + 3] == cells[char_counter + 6]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+            elif cells[char_counter] == cells[char_counter + 2] == cells[char_counter + 4]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+        elif char_counter == 3:
+            if cells[char_counter] == cells[char_counter + 1] == cells[char_counter + 2]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+        elif char_counter == 6:
+            if cells[char_counter] == cells[char_counter + 1] == cells[char_counter + 2]:
+                if cells[char_counter] == X:
+                    winner = X
+                elif cells[char_counter] == O:
+                    winner = O
+        else:
+            while char_counter <= CHAR_AMOUNT:
+                if cells[char_counter] == empty:
+                    amount_empty += 1
+                else:
+                    amount_x += 1
+            if amount_empty == 0:
+                print("Draw")
+            else:
+                print("Game not finished")
+        char_counter += 1
+    print(winner + " wins the game")
+else:
+    print("Impossible")
+
+
